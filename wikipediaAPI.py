@@ -33,7 +33,7 @@ def getAndAppendItems(FinalList, category, depth):
     next_depth = depth + 1
     while True:
         for item in DATA["query"]["categorymembers"]:
-            if "Category:" in item["title"] and depth < 6:
+            if "Category:" in item["title"] and depth < 2:
                 getAndAppendItems(FinalList, item["title"], next_depth)
             elif "Category:" in item["title"]:
                 continue
@@ -49,9 +49,9 @@ if __name__ == "__main__":
     FinalList = []
     S = requests.Session()
     depth = 1
-    getAndAppendItems(FinalList, "Category:Mythology", depth)
+    getAndAppendItems(FinalList, "Category:War", depth)
 
-    with open('./json/outputMythology.json', "w") as fl:
+    with open('./json/outputWar.json', "w") as fl:
         json.dump(FinalList, fl)
 
 
